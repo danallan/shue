@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# app ignores
+server/var/
+server/venv/
+server/shue.tgz
+
+#vim ignores
+*~
+*.sw[po]

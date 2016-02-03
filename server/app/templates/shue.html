@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <style>
+    html, body, .container-fluid, .row, .btn { 
+        height: 100%;
+    }
+
+    @media all and (orientation:landscape) {
+        .col-sm-6 { height: 100%; }
+    }
+
+    @media all and (orientation:portrait) {
+        .col-sm-6 { height: 50%; }
+    }
+
+    .row, .col-sm-6 { 
+        padding: 0.5em;
+    }
+
+    .btn {
+        font-size: 10em;
+    }
+  </style>
+ </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <button id="on" class="btn btn-success btn-lg btn-block">
+          </button>
+        </div>
+        <div class="col-sm-6">
+          <button id="off" class="btn btn-danger btn-lg btn-block">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+  </body>
+  <script>
+    // return a closure on-click handler for a specified button
+    function toggle(btn) {
+        var el = $("#" + btn);
+        var url = "/" + btn;
+        return function() {
+            el.html('<span class="fa fa-cog fa-spin"></span>');
+
+            function disp(ico) {
+                el.html('<span class="fa fa-'+ico+'"></span>');
+                setTimeout(function () { el.html(''); }, 2000);
+            }
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function(text) {
+                    if (text == "ok")
+                        disp("check");
+                    else
+                        disp("thumbs-o-down");
+                },
+                error: function() {
+                    disp("exclamation-triangle");
+                }
+            });
+        };
+    }
+
+    // set onclick handlers for both buttons
+    ["on", "off"].forEach(function (x) {
+        $("#"+x).on('click', toggle(x));
+    });
+  </script>
+ </html>
