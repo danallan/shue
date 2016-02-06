@@ -1,11 +1,10 @@
-# shue
+# shue-server
 
 Control Sonos and Hue bulbs from a single place.
 
-## Server development
+## Development
 
 * Clone repo
-* `cd server`
 * `make prep`
 
 Preparation will install a Python3 virtual environment and all
@@ -15,12 +14,11 @@ activate the virtual environment and run the server manually:
 * `source venv/bin/activate`
 * `python app/shue.py`
 
-## Server deployment
+## Deployment
 
 The server is meant to be run on a Drobo 5N. To build the Drobo
 application:
 
-* `cd server`
 * `make build`
 * Drag the resulting tgz file into the DroboApps directory on the Drobo.
 * Restart the Drobo, or SSH in and run `/usr/bin/DroboApps.sh install` as root
