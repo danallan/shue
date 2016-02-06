@@ -3,9 +3,9 @@ __pycache__/
 *.py[cod]
 
 # app ignores
-server/var/
-server/venv/
-server/shue.tgz
+var/
+venv/
+shue.tgz
 
 #vim ignores
 *~
