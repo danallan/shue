@@ -9,11 +9,14 @@
 from soco import discover
 from phue import Bridge
 from astral import Astral
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 
 # location for sunset detection
 CITY="Boston"
+
+# number of minutes before sunset to turn on lights
+DELTA=15
 
 # Sonos Constants
 MAX_VOLUME=30
@@ -32,8 +35,8 @@ def daytime():
     city = Astral()[CITY]
     sundata = city.sun()
 
-    sunrise = sundata['sunrise']
-    sunset = sundata['sunset']
+    sunrise = sundata['sunrise'] + timedelta(minutes=DELTA)
+    sunset = sundata['sunset'] - timedelta(minutes=DELTA)
     now = datetime.now(sunrise.tzinfo)
 
     return sunrise < now < sunset

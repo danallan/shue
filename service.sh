@@ -4,7 +4,7 @@
 
 framework_version="2.1"
 name="shue"
-version="1.0"
+version="1.0.1"
 description="Automatic and manual control over both Sonos and Hue devices."
 depends="python3"
 webui=""
