@@ -19,6 +19,7 @@ CITY="Boston"
 DELTA=15
 
 # Sonos Constants
+MIN_VOLUME=10
 MAX_VOLUME=30
 
 # Hue constants
@@ -53,7 +54,8 @@ def sonos(play=True):
     sonos = zones[0]
 
     if play:
-        sonos.volume = min(MAX_VOLUME, sonos.volume)
+        # bound volume by extremes
+        sonos.volume = max(MIN_VOLUME, min(sonos.volume, MAX_VOLUME))
         sonos.play()
     else:
         sonos.pause()
