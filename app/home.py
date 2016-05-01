@@ -64,8 +64,8 @@ def hue(power=True):
     # contact bridge
     hue = Bridge(BRIDGE_IP)
 
-    # first time only!
-    #hue.connect()
+    # first time only
+    hue.connect()
 
     # turn all off if requested
     if not power:
