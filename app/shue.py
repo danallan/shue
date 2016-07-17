@@ -21,7 +21,7 @@ def getState():
         with open(SAVE_FILE, 'r') as f:
             j = json.load(f)
         return j
-    except (IOError, OSError):
+    except (IOError, OSError, ValueError):
         return {}
 
 def saveState(s):
