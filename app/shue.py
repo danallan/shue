@@ -11,7 +11,7 @@ import json
 from flask import Flask, render_template
 app = Flask(__name__)
 
-SAVE_FILE="../var/state.txt"
+SAVE_FILE = os.path.abspath("var/state.txt")
 
 def getState():
     """
