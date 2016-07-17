@@ -50,9 +50,9 @@ def arrive():
 
     if s['people'] == 1:
         home.on()
-        return "Someone has come home, turning on!"
+        return "You're the first to come home; turning on!"
     
-    return "There are now %d people at home." % s['people']
+    return "Welcome home! There are now %d people here." % s['people']
 
 @app.route("/leave")
 def leave():
@@ -62,9 +62,10 @@ def leave():
 
     if s['people'] == 0:
         home.off()
-        return "Everyone has left, turning off!"
+        return "You're the last to leave; turning everything off!"
 
-    return "There are now %d people at home." % s['people']
+    p = "people remain" if s['people'] > 1 else "person remains"
+    return "Goodbye! Keeping power on since %d %s." % (s['people'], p)
 
 @app.route("/count")
 def count():
